@@ -1,10 +1,16 @@
+package commercialFlight;
+
+import airline.Airline;
+import airport.Airport;
 import exception.BadParameterException;
 import exception.NullParameterException;
+import flightFactory.Flight;
+
 import java.util.Date;
 import java.util.Objects;
 import java.util.UUID;
 
-public class Flight {
+public class CommercialFlight implements Flight {
 
     private String test;
     private Airline airline;
@@ -14,7 +20,7 @@ public class Flight {
     private Date flightDate;
 
     // constructor
-    public Flight(Airline airline, Airport origin, Airport destination, UUID flightNumber, Date flightDate) throws NullParameterException, BadParameterException {
+    public CommercialFlight(Airline airline, Airport origin, Airport destination, UUID flightNumber, Date flightDate) throws NullParameterException, BadParameterException {
         setFlightAirline(airline);
         setFlightOrigin(origin);
         setFlightDestination(destination);
@@ -64,18 +70,18 @@ public class Flight {
 
     }
     // getters
-    private Date getFlightDate() { return flightDate; }
-    private UUID getFlightNumber() {return flightNumber;}
-    private Airport getFlightDestination() {return destination;}
-    private Airport getFlightOrigin() {return origin;}
-    private Airline getFlightAirline() {return airline;}
+    public Date getFlightDate() { return flightDate; }
+    public UUID getFlightNumber() {return flightNumber;}
+    public Airport getFlightDestination() {return destination;}
+    public Airport getFlightOrigin() {return origin;}
+    public Airline getFlightAirline() {return airline;}
 
     //equals() method
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Flight flight = (Flight) o;
+        CommercialFlight flight = (CommercialFlight) o;
         return Objects.equals(airline, flight.airline) && Objects.equals(flightNumber, flight.flightNumber);
     }
 
@@ -88,11 +94,11 @@ public class Flight {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-       // sb.append(String.format("%-20s %s%n", "Flight Airline Name:", getFlightAirline()));
-        sb.append(String.format("%-20s %s%n", "Flight Number:", getFlightNumber()));
-        sb.append(String.format("%-20s %s%n", "Flight origin:", getFlightOrigin()));
-        sb.append(String.format("%-20s %s%n", "Flight destination:", getFlightDestination()));
-        sb.append(String.format("%-20s %s%n", "Flight Date and Time:", getFlightDate()));
+       // sb.append(String.format("%-20s %s%n", "flight.Flight airline.Airline Name:", getFlightAirline()));
+        sb.append(String.format("%-20s %s%n", "flight.Flight Number:", getFlightNumber()));
+        sb.append(String.format("%-20s %s%n", "flight.Flight origin:", getFlightOrigin()));
+        sb.append(String.format("%-20s %s%n", "flight.Flight destination:", getFlightDestination()));
+        sb.append(String.format("%-20s %s%n", "flight.Flight Date and Time:", getFlightDate()));
 
         return sb.toString();
     }

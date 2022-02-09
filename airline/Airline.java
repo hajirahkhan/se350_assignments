@@ -1,3 +1,5 @@
+package airline;
+
 import exception.BadParameterException;
 import exception.NullParameterException;
 
@@ -49,7 +51,7 @@ public class Airline{
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append(String.format("%-20s %s%n", "Airline Name:", getAirlineName()));
+        sb.append(String.format("%-20s %s%n", "airline.Airline Name:", getAirlineName()));
         return sb.toString();
     }
 

@@ -1,7 +1,7 @@
 package flightFactory;
 
-import airline.Airline;
-import airport.Airport;
+import airline.AirlineName;
+import airport.AirportName;
 
 import java.util.Date;
 import java.util.UUID;
@@ -11,7 +11,10 @@ public interface Flight {
 
     Date getFlightDate();
     public UUID getFlightNumber();
-    Airport getFlightDestination();
-    Airport getFlightOrigin();
-    Airline getFlightAirline();
+    AirportName getFlightDestination();
+    AirportName getFlightOrigin();
+    AirlineName getFlightAirline();
+    int getPassengerCapacity();
+
+
 }

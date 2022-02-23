@@ -1,7 +1,7 @@
 package flightManager;
 
-import airline.Airline;
-import airport.Airport;
+import airline.AirlineName;
+import airport.AirportName;
 import exception.BadParameterException;
 import exception.NullParameterException;
 import flightFactory.Flight;
@@ -35,11 +35,11 @@ public final class FlightManager implements flightManager.FlightFactory {
 
     // accpet parametrs here too
     // does this correctly delegate creation of flight to flight factory?
-    public void createFlight(String type, Airline airline, Airport origin, Airport destination,
+    public void createFlight(String type, AirlineName airline, AirportName origin, AirportName destination,
                              UUID flightNumber,
-                             Date flightDate) throws BadParameterException, NullParameterException {
+                             Date flightDate, int passengerCapacity) throws BadParameterException, NullParameterException {
        // FlightFactory newFlight = new FlightFactory();
-        Flight newFlight = FlightFactory.createFlight(type, airline, origin, destination, flightNumber, flightDate);
+        Flight newFlight = FlightFactory.createFlight(type, airline, origin, destination, flightNumber, flightDate, passengerCapacity);
         flights.add(newFlight);
     }
 

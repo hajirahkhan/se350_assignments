@@ -5,13 +5,13 @@ import exception.NullParameterException;
 
 import java.util.Objects;
 
-public class Airport {
+public class AirportName implements AirportInterface {
 
     // initialize variable name, type String
     private String airportName;
 
     //setters, constructor
-    public Airport(String name) throws NullParameterException, BadParameterException {
+    public AirportName(String name) throws NullParameterException, BadParameterException {
             setAirportName(name);
     }
 
@@ -35,7 +35,7 @@ public class Airport {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Airport airport = (Airport) o;
+        AirportName airport = (AirportName) o;
         return Objects.equals(airportName, airport.airportName);
     }
 

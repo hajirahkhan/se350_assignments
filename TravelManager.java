@@ -1,8 +1,7 @@
-import airline.Airline;
-import airport.Airport;
+import airline.AirlineName;
+import airport.AirportName;
 import exception.BadParameterException;
 import exception.NullParameterException;
-import commercialFlight.CommercialFlight;
 import flightManager.FlightManager;
 
 import java.util.Date;
@@ -18,36 +17,38 @@ public class TravelManager {
         Date today = new Date();
         UUID currFlightNumber = UUID.randomUUID();
 
-        Airport airport1 = null;
+        AirportName airport1 = null;
         try {
-            airport1 = new Airport("ORD");
+            airport1 = new AirportName("ORD");
         } catch (NullParameterException e) {
             e.printStackTrace();
         } catch (BadParameterException e) {
             e.printStackTrace();
         }
-        Airport airport2 = null;
+        AirportName airport2 = null;
         try {
-            airport2 = new Airport("MAA");
+            airport2 = new AirportName("MAA");
         } catch (NullParameterException e) {
             e.printStackTrace();
         } catch (BadParameterException e) {
             e.printStackTrace();
         }
-        Airline airline1 = null;
+        AirlineName airline1 = null;
         try {
-            airline1 = new Airline("United");
+            airline1 = new AirlineName("United");
         } catch (NullParameterException e) {
             e.printStackTrace();
         } catch (BadParameterException e) {
             e.printStackTrace();
         }
-        FlightManager currFlight = null;
+        FlightManager currFlight1 = null;
+        FlightManager currFlight2 = null;
         try {
             //currFlight = new CommercialFlight(airline1, airport1, airport2, currFlightNumber, today);
             // replace line 47 w call to flightManger's create lfight method
             // not trying to create an instnace of flight manager, use get instance method
-           FlightManager.getInstance().createFlight("CommercialFlight",airline1, airport1, airport2, currFlightNumber, today);
+            FlightManager.getInstance().createFlight("PassengerFlight",airline1, airport1, airport2, currFlightNumber, today, 25);
+            FlightManager.getInstance().createFlight("CommercialFlight",airline1, airport1, airport2, currFlightNumber, today, 1);
         } catch (NullParameterException e) {
             e.printStackTrace();
         } catch (BadParameterException e) {

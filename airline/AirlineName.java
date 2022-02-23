@@ -5,14 +5,14 @@ import exception.NullParameterException;
 
 import java.util.Objects;
 
-public class Airline{
+public class AirlineName implements AirlineInterface {
 
     // initialize variable name, type String
     private String airlineName;
 
 
     // constructor
-    public Airline(String name) throws NullParameterException, BadParameterException {
+    public AirlineName(String name) throws NullParameterException, BadParameterException {
         setAirlineName(name);
     }
 
@@ -38,7 +38,7 @@ public class Airline{
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Airline airline = (Airline) o;
+        AirlineName airline = (AirlineName) o;
         return Objects.equals(airlineName, airline.airlineName);
     }
     // hashCode() method

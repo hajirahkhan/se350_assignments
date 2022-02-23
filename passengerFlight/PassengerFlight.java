@@ -1,4 +1,4 @@
-package commercialFlight;
+package passengerFlight;
 
 import airline.AirlineName;
 import airport.AirportName;
@@ -10,25 +10,33 @@ import java.util.Date;
 import java.util.Objects;
 import java.util.UUID;
 
-public class CommercialFlight implements Flight {
-
+public class PassengerFlight implements Flight {
+    // implements Flight
     private String test;
     private AirlineName airline;
     private AirportName origin;
     private AirportName destination;
     private UUID flightNumber;
     private Date flightDate;
+    private int passengerCapacity;
 
     // constructor
-    public CommercialFlight(AirlineName airline, AirportName origin, AirportName destination, UUID flightNumber, Date flightDate) throws NullParameterException, BadParameterException {
+    public PassengerFlight(AirlineName airline, AirportName origin, AirportName destination, UUID flightNumber, Date flightDate, int passengerCapacity) throws NullParameterException, BadParameterException {
         setFlightAirline(airline);
         setFlightOrigin(origin);
         setFlightDestination(destination);
         setFlightNumber(flightNumber);
         setFlightDate(flightDate);
+        setPassengerCapacity(passengerCapacity);
     }
 
-    // setter
+    private void setPassengerCapacity(int currentPassengerCapacity) throws NullParameterException {
+        if (currentPassengerCapacity < 0){
+            throw new NullParameterException("Invalid value passed in for passengerCapacity");
+        }
+        passengerCapacity = currentPassengerCapacity;
+    }
+
     private void setFlightDate(Date currentFlightDate) throws NullParameterException {
         if (currentFlightDate == null) {
             throw new NullParameterException("Null value passed in for setFlightDate");
@@ -36,16 +44,14 @@ public class CommercialFlight implements Flight {
         flightDate = currentFlightDate;
     }
 
-    // setter
     private void setFlightNumber(UUID currentFlightNumber) throws NullParameterException {
         if (currentFlightNumber == null) {
             throw new NullParameterException("Null value passed in for setFlightNumber");
         }
         flightNumber = currentFlightNumber;
-
     }
 
-    // setter
+
     private void setFlightDestination(AirportName flightDestination) throws NullParameterException {
         if (flightDestination == null) {
             throw new NullParameterException("Null value passed in for setFlightDestination");
@@ -53,7 +59,6 @@ public class CommercialFlight implements Flight {
         destination = flightDestination;
     }
 
-    // setter
     private void setFlightOrigin(AirportName flightOrigin) throws NullParameterException  {
         if (flightOrigin == null) {
             throw new NullParameterException("Null value passed in for setFlightOrigin");
@@ -61,40 +66,33 @@ public class CommercialFlight implements Flight {
         origin = flightOrigin;
     }
 
-    // setter
     private void setFlightAirline(AirlineName flightAirline) throws NullParameterException {
         if (flightAirline == null) {
             throw new NullParameterException("Null value passed in for setFlightAirline");
         }
         airline = flightAirline;
-
     }
+
     // getters
     public Date getFlightDate() { return flightDate; }
     public UUID getFlightNumber() {return flightNumber;}
     public AirportName getFlightDestination() {return destination;}
     public AirportName getFlightOrigin() {return origin;}
     public AirlineName getFlightAirline() {return airline;}
-
-    @Override
-    public int getPassengerCapacity() {
-        throw new UnsupportedOperationException("Invalid operation for commercial flight");
-    }
+    public int getPassengerCapacity() {return passengerCapacity;}
 
 
-    //equals() method
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        CommercialFlight flight = (CommercialFlight) o;
-        return Objects.equals(airline, flight.airline) && Objects.equals(flightNumber, flight.flightNumber);
+        PassengerFlight that = (PassengerFlight) o;
+        return passengerCapacity == that.passengerCapacity && Objects.equals(test, that.test) && Objects.equals(airline, that.airline) && Objects.equals(origin, that.origin) && Objects.equals(destination, that.destination) && Objects.equals(flightNumber, that.flightNumber) && Objects.equals(flightDate, that.flightDate);
     }
 
-    // hashCode() method
     @Override
     public int hashCode() {
-        return Objects.hash(airline, flightNumber, origin, destination, flightDate);
+        return Objects.hash(test, airline, origin, destination, flightNumber, flightDate, passengerCapacity);
     }
 
     @Override
@@ -105,16 +103,8 @@ public class CommercialFlight implements Flight {
         sb.append(String.format("%-20s %s%n", "flight.Flight origin:", getFlightOrigin()));
         sb.append(String.format("%-20s %s%n", "flight.Flight destination:", getFlightDestination()));
         sb.append(String.format("%-20s %s%n", "flight.Flight Date and Time:", getFlightDate()));
+        sb.append(String.format("%-20s %s%n", "flight.Flight Passenger capacity:", getPassengerCapacity()));
 
         return sb.toString();
     }
-
-
-// toString() method
-
-
-
-
-
-
 }
